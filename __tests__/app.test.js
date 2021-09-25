@@ -11,12 +11,13 @@ describe('CRUD routes for build something', () => {
   it('adds new quotes to table', () => {
     return request(app)
       .post('/api/v1/quotes')
-      .send(['Fish, for sport only, not for meat. Fish meat is practically a vegetable.'])
+      .send('Fish, for sport only, not for meat. Fish meat is practically a vegetable.')
       .then((res) => {
-        expect(res.body).toEqual([{
-          id: 2,
+        console.log('HELLOOOOOO', res.body);
+        expect(res.body).toEqual({
+          id: expect.any(String),
           quote: expect.any(String)
-        }]);
+        });
       });
   });
 
@@ -24,7 +25,8 @@ describe('CRUD routes for build something', () => {
     return request(app)
       .get('/api/v1/quotes')
       .then((res) => {
-        expect(res.body).toEqual([{ 
+        expect(res.body).toEqual([{
+          id: expect.any(String),
           quote: expect.any(String)
         }]);
       });
